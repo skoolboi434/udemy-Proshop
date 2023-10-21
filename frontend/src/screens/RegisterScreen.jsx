@@ -6,7 +6,6 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
-import { toast } from 'react-toastify';
 
 const RegisterScreen = () => {
   const [name, setName] = useState();
@@ -34,7 +33,7 @@ const RegisterScreen = () => {
   const submitHandler = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      alert('Passwords do not match');
       return;
     } else {
       try {
@@ -42,7 +41,7 @@ const RegisterScreen = () => {
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        alert(err?.data?.message || err.error);
       }
     }
   };

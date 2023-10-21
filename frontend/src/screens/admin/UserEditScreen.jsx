@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
-import { toast } from 'react-toastify';
+
 import { useGetUserDetailsQuery, useUpdateUserMutation } from '../../slices/usersApiSlice';
 
 const UserEditScreen = () => {
@@ -24,10 +24,10 @@ const UserEditScreen = () => {
     e.preventDefault();
     try {
       await updateUser({ userId, name, email, isAdmin });
-      toast.success('User updated successfully');
+      alert('User updated successfully');
       navigate('/admin/userlist');
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      alert(err?.data?.message || err.error);
     }
   };
 

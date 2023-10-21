@@ -4,7 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 
-import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { useProfileMutation } from '../slices/usersApiSlice';
@@ -32,7 +31,7 @@ const ProfileScreen = () => {
   const submitHandler = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      alert('Passwords do not match');
     } else {
       try {
         const res = await updateProfile({
@@ -42,9 +41,9 @@ const ProfileScreen = () => {
           password
         }).unwrap();
         dispatch(setCredentials({ ...res }));
-        toast.success('Profile updated successfully');
+        alert('Profile updated successfully');
       } catch (err) {
-        toast.error(err?.data?.message || err.error);
+        alert(err?.data?.message || err.error);
       }
     }
   };

@@ -50,7 +50,7 @@ const OrderScreen = () => {
         refetch();
         toast.success('Payment successful');
       } catch (err) {
-        toast.error(err?.data?.message || err.message);
+        alert(err?.data?.message || err.error);
       }
     });
   }
@@ -62,7 +62,7 @@ const OrderScreen = () => {
   // }
 
   function onError(err) {
-    toast.error(err?.data?.message || err.message);
+    alert(err?.data?.message || err.error);
   }
   function createOrder(data, actions) {
     return actions.order
@@ -86,7 +86,7 @@ const OrderScreen = () => {
       refetch();
       toast.success('Order delivered');
     } catch (err) {
-      toast.error(err?.data?.message || err.message);
+      alert(err?.data?.message || err.error);
     }
   };
 

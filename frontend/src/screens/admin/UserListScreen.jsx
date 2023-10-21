@@ -5,7 +5,6 @@ import { FaTimes, FaTrash, FaEdit, FaCheck } from 'react-icons/fa';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import { useGetUsersQuery, useDeleteUserMutation } from '../../slices/usersApiSlice';
-import { toast } from 'react-toastify';
 
 const UserListScreen = () => {
   const [deleteUser, { isLoading: loadingDelete }] = useDeleteUserMutation();
@@ -16,7 +15,7 @@ const UserListScreen = () => {
         await deleteUser(id);
         refetch();
       } catch (err) {
-        toast.error(err?.data?.message || err.message);
+        alert(err?.data?.message || err.message);
       }
     }
   };

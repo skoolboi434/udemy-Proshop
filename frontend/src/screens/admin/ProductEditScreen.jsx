@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer';
-import { toast } from 'react-toastify';
+
 import { useGetProductDetailsQuery, useUpdateProductMutation, useUploadProductImageMutation } from '../../slices/productsApiSlice';
 
 const ProductEditScreen = () => {
@@ -39,11 +39,11 @@ const ProductEditScreen = () => {
         description,
         countInStock
       }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
-      toast.success('Product updated');
+      alert('Product updated');
       refetch();
       navigate('/admin/productlist');
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      alert(err?.data?.message || err.error);
     }
   };
 
@@ -52,10 +52,10 @@ const ProductEditScreen = () => {
     formData.append('image', e.target.files[0]);
     try {
       const res = await uploadProductImage(formData).unwrap();
-      toast.success(res.message);
+      alert(res.message);
       setImage(res.image);
     } catch (err) {
-      toast.error(err?.data?.message || err.error);
+      alert(err?.data?.message || err.error);
     }
   };
 
